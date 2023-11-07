@@ -10,7 +10,7 @@ const PostAJob = () => {
 
     const categories = useLoaderData();
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const today = new Date();
@@ -46,12 +46,13 @@ const PostAJob = () => {
                 if (data.insertedId) {
                     form.reset();
                     Swal.fire({
-                        position: "top-end",
+                        position: "top-center",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "Job posted successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate("/added_jobs")
                 }
             })
     }
