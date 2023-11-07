@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/added_jobs",
-                element: <AddedJobs></AddedJobs>
+                element: <AddedJobs></AddedJobs>,
             },
             {
                 path: "/my_bids",
@@ -41,7 +41,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/post_job",
-                element: <PostAJob></PostAJob>
+                element: <PostAJob></PostAJob>,
+                loader: () => fetch("category.json")
             }
         ]
     },
