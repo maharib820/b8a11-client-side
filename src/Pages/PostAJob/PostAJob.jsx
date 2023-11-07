@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const PostAJob = () => {
 
@@ -8,6 +9,8 @@ const PostAJob = () => {
     const [datee, setDatee] = useState(null);
 
     const categories = useLoaderData();
+
+    // const navigate = useNavigate();
 
     useEffect(() => {
         const today = new Date();
@@ -33,16 +36,22 @@ const PostAJob = () => {
         fetch("http://localhost:5000/newAddedJobs", {
             method: "POST",
             headers: {
-                "content-type":"application/json"
+                "content-type": "application/json"
             },
             body: JSON.stringify(newJob)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if(data.insertedId){
-                    alert("added");
+                if (data.insertedId) {
                     form.reset();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             })
     }

@@ -7,7 +7,6 @@ import AllJobsCard from "../../Components/AllJobsCard";
 const Home = () => {
 
     const categories = useLoaderData();
-    console.log(categories);
 
     const [tabIndex, setTabIndex] = useState(0);
 
