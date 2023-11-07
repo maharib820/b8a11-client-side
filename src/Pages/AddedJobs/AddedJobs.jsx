@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import MyAddedJobsCard from "../../Components/MyAddedJobsCard";
 
 const AddedJobs = () => {
 
@@ -15,8 +16,10 @@ const AddedJobs = () => {
     }, [user?.email])
 
     return (
-        <div>
-
+        <div className="max-w-7xl mx-auto bg-white border drop-shadow p-10 mt-5">
+            {
+                myAddedJobs?.map((myAddedJob, index) => <MyAddedJobsCard key={index} myAddedJob={myAddedJob}></MyAddedJobsCard>)
+            }
         </div>
     );
 };
