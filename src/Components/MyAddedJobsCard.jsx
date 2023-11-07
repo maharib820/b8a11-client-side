@@ -1,4 +1,5 @@
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 const MyAddedJobsCard = ({ myAddedJob }) => {
     return (
@@ -27,3 +28,7 @@ const MyAddedJobsCard = ({ myAddedJob }) => {
 };
 
 export default MyAddedJobsCard;
+
+MyAddedJobsCard.propTypes = {
+    myAddedJob : PropTypes.object
+}
