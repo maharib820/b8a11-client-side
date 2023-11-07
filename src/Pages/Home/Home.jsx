@@ -1,11 +1,16 @@
 import { useState } from "react";
 import Banner from "../../Components/Banner";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { useLoaderData } from "react-router-dom";
+import AllJobsCard from "../../Components/AllJobsCard";
 
 const Home = () => {
 
+    const categories = useLoaderData();
+    console.log(categories);
+
     const [tabIndex, setTabIndex] = useState(0);
-    
+
     return (
         <div>
             <div className='border-b-2'>
@@ -15,22 +20,26 @@ const Home = () => {
                 <Tabs defaultFocus={true} defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className="w-full">
                     <div className="max-w-7xl mx-auto bg-white border drop-shadow">
                         <TabList className="flex gap-8 mx-auto text-slate-500 font-bold">
-                            <Tab className={`flex-grow text-center py-2 outline-none ${tabIndex===0 ? 'text-[#29b2fe] border-b-2 border-[#29b2fe]' : ''}`}>Web Development</Tab>
-                            <Tab className={`flex-grow text-center py-2 outline-none ${tabIndex===1 ? 'text-[#29b2fe] border-b-2 border-[#29b2fe]' : ''}`}>Digital Marketing</Tab>
-                            <Tab className={`flex-grow text-center py-2 outline-none ${tabIndex===2 ? 'text-[#29b2fe] border-b-2 border-[#29b2fe]' : ''}`}>Graphics Design</Tab>
+                            {
+                                categories.map(category => {
+                                    return <Tab
+                                        key={category.id}
+                                        className={`flex-grow text-center py-2 outline-none ${tabIndex === (category.id - 1) ? 'text-[#29b2fe] border-b-2 border-[#29b2fe]' : ''}`}>
+                                        {category.category}
+                                    </Tab>
+                                })
+                            }
                         </TabList>
                     </div>
 
                     <div className="max-w-7xl mx-auto bg-white border drop-shadow p-10 mt-5">
-                        <TabPanel>
-                            <h2>Any content 1</h2>
-                        </TabPanel>
-                        <TabPanel>
-                            <h2>Any content 2</h2>
-                        </TabPanel>
-                        <TabPanel>
-                            <h2>Any content 3</h2>
-                        </TabPanel>
+                        {
+                            categories.map(category => {
+                                return <TabPanel key={category.id}>
+                                    <AllJobsCard category={category}></AllJobsCard>
+                                </TabPanel>
+                            })
+                        }
                     </div>
                 </Tabs>
             </div>

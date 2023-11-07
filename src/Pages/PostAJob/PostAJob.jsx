@@ -28,14 +28,29 @@ const PostAJob = () => {
         const minprice = form.minprice.value;
         const maxprice = form.maxprice.value;
         const description = form.description.value;
-        const newJob = {email, title, category, date, minprice, maxprice, description};
+        const newJob = { email, title, category, date, minprice, maxprice, description };
         // console.log(newJob);
+        fetch("http://localhost:5000/newAddedJobs", {
+            method: "POST",
+            headers: {
+                "content-type":"application/json"
+            },
+            body: JSON.stringify(newJob)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.insertedId){
+                    alert("added");
+                    form.reset();
+                }
+            })
     }
 
     return (
         <div className="w-2/3 mx-auto">
             <form onSubmit={handleAddJobForm}>
-                <h2 className="text-3xl font-bold mt-10 mb-6 text-center">Post a Job</h2>
+                <h2 className="text-3xl font-bold mt-10 mb-6 text-center">POST JOB</h2>
                 {/* row1 */}
                 <div className="flex gap-5">
                     <div className="form-control flex-1">

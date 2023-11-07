@@ -14,7 +14,7 @@ const Banner = () => {
                                 sequence={[
                                     'Hire skilled worker',
                                     500,
-                                    'Or get job on skill',
+                                    'Or find work on skill',
                                     500
                                 ]}
                                 wrapper="span"
