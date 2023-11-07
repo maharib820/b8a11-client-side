@@ -1,5 +1,6 @@
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const MyAddedJobsCard = ({ myAddedJob }) => {
     return (
@@ -8,7 +9,7 @@ const MyAddedJobsCard = ({ myAddedJob }) => {
                 <div className="flex gap-8 items-center">
                     <h2 className="text-4xl">{myAddedJob.title}</h2>
                     <div className='flex items-center gap-5'>
-                        <button><AiOutlineEdit className='text-green-600 text-2xl'></AiOutlineEdit></button>
+                        <Link to={`/updatemyaddedjobs/${myAddedJob._id}`}><button><AiOutlineEdit className='text-green-600 text-2xl'></AiOutlineEdit></button></Link>
                         <button><AiOutlineDelete className='text-red-600 text-2xl'></AiOutlineDelete></button>
                     </div>
                 </div>
