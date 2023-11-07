@@ -1,8 +1,47 @@
 import { PiWavesBold } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 const Register = () => {
+
+    const { createUser, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photo = form.photo.value;
+        createUser(email, password)
+            .then(result => {
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                    .then(() => {
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Your have registered successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    })
+                    .catch()
+                logOut();
+                navigate("/login");
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
     return (
         <div className="flex justify-center">
             <div className="w-full lg:w-3/5 xl:w-1/3 border rounded-2xl mt-14 p-5 lg:p-10">
@@ -11,11 +50,11 @@ const Register = () => {
                     <h1 className="text-xl lg:text-3xl text-[#161f2b] font-bold">Register to WAVEHIRE</h1>
                 </div>
                 <div className="flex justify-center">
-                    <form className="w-full lg:w-10/12">
-                        <input className="font-bold border border-[#29b2fe] w-full mt-8 mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="text" name="name" placeholder="Name" id="" />
-                        <input className="font-bold border border-[#29b2fe] w-full mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="email" name="email" placeholder="Email Address" id="" />
-                        <input className="font-bold border border-[#29b2fe] w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="password" name="password" placeholder="Password" id="" />
-                        <input className="font-bold border border-[#29b2fe] w-full mt-4 mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="text" name="photo" placeholder="Photo URL" id="" />
+                    <form onSubmit={handleRegister} className="w-full lg:w-10/12">
+                        <input className="font-bold border border-[#29b2fe] w-full mt-8 mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="text" name="name" placeholder="Name" />
+                        <input className="font-bold border border-[#29b2fe] w-full mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="email" name="email" placeholder="Email Address" />
+                        <input className="font-bold border border-[#29b2fe] w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="password" name="password" placeholder="Password" />
+                        <input className="font-bold border border-[#29b2fe] w-full mt-4 mb-4 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#29b2fe] placeholder:text-slate-400 placeholder:font-bold" type="text" name="photo" placeholder="Photo URL" />
                         <input className="btn w-full rounded-none bg-[#29b2fe] mt-8 text-white" type="submit" value="Register" />
                     </form>
                 </div>
