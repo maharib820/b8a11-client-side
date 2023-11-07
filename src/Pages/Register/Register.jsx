@@ -4,12 +4,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
 
-    const { createUser, logOut } = useContext(AuthContext);
+    const { createUser, logOut, auth } = useContext(AuthContext);
     const navigate = useNavigate();
+    const provider = new GoogleAuthProvider();
+
+    const googleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(() => {
+                navigate("/")
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    }
 
     const handleRegister = e => {
         e.preventDefault();
@@ -38,7 +56,13 @@ const Register = () => {
                 navigate("/login");
             })
             .catch(error => {
-                console.log(error.message);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
     }
 
@@ -60,7 +84,7 @@ const Register = () => {
                 </div>
                 <p className="font-bold text-center my-5 w-10/12 mx-auto">Or</p>
                 <div className="flex justify-center">
-                    <button className="w-full lg:w-10/12 btn border-2 border-[#29b2fe] rounded-none"><FcGoogle className="text-3xl"></FcGoogle>Continue with Google</button>
+                    <button onClick={googleSignIn} className="w-full lg:w-10/12 btn border-2 border-[#29b2fe] rounded-none"><FcGoogle className="text-3xl"></FcGoogle>Continue with Google</button>
                 </div>
                 <hr className="h-2 w-10/12 mx-auto mt-20" />
                 <div className="mt-4"><h3 className="text-center font-bold">Already have an account? <Link to={"/login"}><span className="text-[#29b2fe]">Login</span></Link></h3></div>

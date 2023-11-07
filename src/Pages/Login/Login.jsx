@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -24,7 +25,13 @@ const Login = () => {
                 navigate(location?.state ? location.state : "/")
             })
             .catch(error => {
-                console.log(error.message);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
     }
 
@@ -35,7 +42,13 @@ const Login = () => {
                 navigate(location?.state ? location.state : "/")
             })
             .catch(error => {
-                console.log(error.message);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: error.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
     }
 

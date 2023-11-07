@@ -4,7 +4,7 @@ import { AiOutlineDownSquare } from "react-icons/ai";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
@@ -58,7 +58,7 @@ const Navbar = () => {
                     {
                         loading ? <span className="loading loading-ring loading-lg"></span> :
                             user ?
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-1 md:gap-2">
                                     <div><img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" /></div>
                                     <p className="text-slate-700 italic">{user.displayName}</p>
                                     <div onClick={logOutHandler}>
