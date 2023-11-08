@@ -54,7 +54,7 @@ const JobBidPage = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate("/my_bids")
+                    navigate("/wavehire/my_bids")
                 }
             })
     }

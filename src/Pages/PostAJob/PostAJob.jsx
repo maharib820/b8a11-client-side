@@ -52,7 +52,7 @@ const PostAJob = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate("/added_jobs")
+                    navigate("/wavehire/added_jobs")
                 }
             })
     }

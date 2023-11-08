@@ -40,9 +40,9 @@ const Navbar = () => {
     const links =
         <>
             <li><NavLink to={"/"} className={location.pathname === "/" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>Home</NavLink></li>
-            <li><NavLink to={"/added_jobs"} className={location.pathname === "/added_jobs" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>Added Jobs</NavLink></li>
-            <li><NavLink to={"/my_bids"} className={location.pathname === "/my_bids" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>My Bids</NavLink></li>
-            <li><NavLink to={"/bid_requests"} className={location.pathname === "/bid_requests" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>Bid Requests</NavLink></li>
+            <li><NavLink to={"/wavehire/added_jobs"} className={location.pathname === "/wavehire/added_jobs" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>Added Jobs</NavLink></li>
+            <li><NavLink to={"/wavehire/my_bids"} className={location.pathname === "/wavehire/my_bids" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>My Bids</NavLink></li>
+            <li><NavLink to={"/wavehire/bid_requests"} className={location.pathname === "/wavehire/bid_requests" ? "bg-slate-600 font-bold lg:py-[9px] lg:px-4 text-red-600 lg:text-white" : ""}>Bid Requests</NavLink></li>
         </>
 
     return (
@@ -54,7 +54,7 @@ const Navbar = () => {
                     <h1 className="text-3xl text-[#161f2b] font-bold">WAVEHIRE</h1>
                 </div>
                 <div className="flex items-center gap-8 font-bold">
-                    <Link to={"/post_job"}><button className="btn bg-[#e60278] text-white">Post a Job</button></Link>
+                    <Link to={"/wavehire/post_job"}><button className="btn bg-[#e60278] text-white">Post a Job</button></Link>
                     {
                         loading ? <span className="loading loading-ring loading-lg"></span> :
                             user ?
@@ -67,8 +67,8 @@ const Navbar = () => {
                                 </div>
                                 :
                                 <div>
-                                    <Link to={"/login"} className="btn bg-[#29b2fe] rounded-r-none text-white">Log In</Link>
-                                    <Link to={"/register"} className="btn bg-[#29b2fe] text-white rounded-l-none">Sign Up</Link>
+                                    <Link to={"/wavehire/login"} className="btn bg-[#29b2fe] rounded-r-none text-white">Log In</Link>
+                                    <Link to={"/wavehire/register"} className="btn bg-[#29b2fe] text-white rounded-l-none">Sign Up</Link>
                                 </div>
                     }
                 </div>

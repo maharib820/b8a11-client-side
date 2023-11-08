@@ -26,37 +26,37 @@ const router = createBrowserRouter([
                 loader: () => fetch("http://localhost:5000/categories")
             },
             {
-                path: "/login",
+                path: "/wavehire/login",
                 element: <Login></Login>
             },
             {
-                path: "/register",
+                path: "/wavehire/register",
                 element: <Register></Register>
             },
             {
-                path: "/added_jobs",
+                path: "/wavehire/added_jobs",
                 element: <PrivateRoute><AddedJobs></AddedJobs></PrivateRoute>,
             },
             {
-                path: "/my_bids",
+                path: "/wavehire/my_bids",
                 element: <PrivateRoute><MyBids></MyBids></PrivateRoute>
             },
             {
-                path: "/bid_requests",
+                path: "/wavehire/bid_requests",
                 element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>
             },
             {
-                path: "/post_job",
+                path: "/wavehire/post_job",
                 element: <PrivateRoute><PostAJob></PostAJob></PrivateRoute>,
                 loader: () => fetch("http://localhost:5000/categories")
             },
             {
-                path: "/updatemyaddedjobs/:id",
+                path: "/wavehire/updatemyaddedjobs/:id",
                 element: <PrivateRoute><UpdateMyAddedJob></UpdateMyAddedJob></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/updateaddedjob/${params.id}`)
             },
             {
-                path: "/job/:id",
+                path: "/wavehire/job/:id",
                 element: <PrivateRoute><JobBidPage></JobBidPage></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/jobdetails/${params.id}`)
             }

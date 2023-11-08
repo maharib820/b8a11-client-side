@@ -37,7 +37,7 @@ const AllJobsCard = ({ category }) => {
                                             </p>
                                             <h5 className="font-bold mt-4">Last Date: {job.date}</h5>
                                             {
-                                                todayDate <= new Date(job.date) ? <Link to={`/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
+                                                todayDate <= new Date(job.date) ? <Link to={`/wavehire/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
                                             }
                                         </div>
                                         <div className="ps-0 lg:ps-16">

@@ -13,6 +13,7 @@
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mui/material": "^5.14.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
+    "axios": "^1.6.1",
     "firebase": "^10.5.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -28,7 +29,8 @@
     "react-type-animation": "^3.2.0",
     "sort-by": "^1.2.0",
     "styled-components": "^6.1.1",
-    "sweetalert2": "^11.9.0"
+    "sweetalert2": "^11.9.0",
+    "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
