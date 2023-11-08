@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import MyAddedJobsCard from "../../Components/MyAddedJobsCard";
+import Swal from 'sweetalert2';
 
 const AddedJobs = () => {
 
@@ -15,10 +16,41 @@ const AddedJobs = () => {
             })
     }, [user?.email])
 
+    const handleJobDelete = e => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Your post will delete permanently!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/deletejob/${e}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            const remaining = myAddedJobs.filter(job => job._id !== e);
+                            setMyAddedJobs(remaining);
+                        }
+                    })
+            }
+        });
+    }
+
     return (
         <div className="max-w-7xl mx-auto bg-white border drop-shadow p-10 mt-5">
             {
-                myAddedJobs?.map((myAddedJob, index) => <MyAddedJobsCard key={index} myAddedJob={myAddedJob}></MyAddedJobsCard>)
+                myAddedJobs?.map((myAddedJob, index) => <MyAddedJobsCard key={index} myAddedJob={myAddedJob} handleJobDelete={handleJobDelete}></MyAddedJobsCard>)
             }
         </div>
     );

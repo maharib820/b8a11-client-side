@@ -1,38 +1,8 @@
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
-const MyAddedJobsCard = ({ myAddedJob }) => {
-
-    const handleJobDelete = e => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Your post will delete permanently!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:5000/deletejob/${e}`, {
-                    method: "DELETE"
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    })
-            }
-        });
-    }
+const MyAddedJobsCard = ({ myAddedJob, handleJobDelete }) => {
 
     return (
         <div className='border-b-2 mb-6'>
@@ -62,5 +32,6 @@ const MyAddedJobsCard = ({ myAddedJob }) => {
 export default MyAddedJobsCard;
 
 MyAddedJobsCard.propTypes = {
-    myAddedJob: PropTypes.object
+    myAddedJob: PropTypes.object,
+    handleJobDelete: PropTypes.func
 }
