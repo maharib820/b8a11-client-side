@@ -19,7 +19,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch("category.json")
+                loader: () => fetch("http://localhost:5000/categories")
             },
             {
                 path: "/login",
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
             {
                 path: "/post_job",
                 element: <PostAJob></PostAJob>,
-                loader: () => fetch("category.json")
+                loader: () => fetch("http://localhost:5000/categories")
             },
             {
                 path: "/updatemyaddedjobs/:id",

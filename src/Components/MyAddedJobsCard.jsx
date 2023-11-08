@@ -9,7 +9,7 @@ const MyAddedJobsCard = ({ myAddedJob }) => {
                 <div className="flex gap-8 items-center">
                     <h2 className="text-4xl">{myAddedJob.title}</h2>
                     <div className='flex items-center gap-5'>
-                        <Link to={`/updatemyaddedjobs/${myAddedJob._id}`}><button><AiOutlineEdit className='text-green-600 text-2xl'></AiOutlineEdit></button></Link>
+                        <Link to={`/updatemyaddedjobs/${myAddedJob._id}`}><button><AiOutlineEdit className='text-green-600 text-2xl mt-2'></AiOutlineEdit></button></Link>
                         <button><AiOutlineDelete className='text-red-600 text-2xl'></AiOutlineDelete></button>
                     </div>
                 </div>
