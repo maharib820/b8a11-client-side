@@ -3,15 +3,17 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { updateProfile } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from "../../Firebase/Firebase.config";
 
 const Register = () => {
 
-    const { createUser, logOut, auth } = useContext(AuthContext);
+    const { createUser, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
     const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
 
     const googleSignIn = () => {
         signInWithPopup(auth, provider)

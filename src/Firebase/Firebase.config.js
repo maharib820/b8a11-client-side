@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC_gh7s3l0vjwIs2WRL2XvZrrQxmVktWg8",
-    authDomain: "wavehire-5ee55.firebaseapp.com",
-    projectId: "wavehire-5ee55",
-    storageBucket: "wavehire-5ee55.appspot.com",
-    messagingSenderId: "400848487181",
-    appId: "1:400848487181:web:9ade784a197a805c74a644"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

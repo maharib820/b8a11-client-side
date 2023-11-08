@@ -1,12 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const JobBidPage = () => {
 
     const data = useLoaderData();
     const { user } = useContext(AuthContext);
     const [datee, setDatee] = useState(null);
+    const navigate = useNavigate();
+
+    const toastt = (value) => toast(value, { position: toast.POSITION.TOP_CENTER })
 
     useEffect(() => {
         const today = new Date();
@@ -17,6 +23,39 @@ const JobBidPage = () => {
 
     const handleSubmitedBid = e => {
         e.preventDefault();
+        const max = parseInt(data?.maxprice);
+        const min = parseInt(data?.minprice);
+        const form = e.target;
+        const bidamount = form.bidamount.value;
+        if (parseInt(bidamount) > max || parseInt(bidamount) < min) {
+            toastt("Invalid bid amount");
+            return
+        }
+        const deadline = form.deadline.value;
+        const bidby = form.bidby.value;
+        const postedby = form.postedby.value;
+        const newAddedBids = { bidamount, deadline, bidby, postedby };
+        fetch("http://localhost:5000/newAddedBids", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newAddedBids)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Your bid is successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate("/my_bids")
+                }
+            })
     }
 
     return (
@@ -33,20 +72,23 @@ const JobBidPage = () => {
                 <h2 className="text-2xl font-bold">BID NOW</h2>
                 <form className="mt-6" onSubmit={handleSubmitedBid}>
                     <div className="form-control">
-                        <input type="text" placeholder="amount" name="bidamount" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
+                        <input type="number" placeholder="amount" name="bidamount" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
                     </div>
                     <div className="form-control mt-5">
-                        <input min={datee} type="date" name="deadline" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
+                        <input min={datee} max={data?.date} type="date" name="deadline" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
                     </div>
                     <div className="form-control mt-5">
-                        <input readOnly defaultValue={user?.email} type="email" placeholder="email" name="email" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
+                        <input readOnly defaultValue={user?.email} type="email" placeholder="email" name="bidby" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
                     </div>
                     <div className="form-control mt-5">
-                        <input readOnly defaultValue={data?.email} type="email" name="title" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
+                        <input readOnly defaultValue={data?.email} type="email" name="postedby" className="font-bold text-sm input rounded-none input-bordered focus:border-black focus:outline-none h-12" required />
                     </div>
-                    <input className="btn w-full mt-8 rounded-none bg-[#161e2c] text-white" type="submit" value="Bid Now" />
+                    {
+                        user?.email === data?.email ? "" : <input className="btn w-full mt-8 rounded-none bg-[#161e2c] text-white" type="submit" value="Bid Job" />
+                    }
                 </form>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

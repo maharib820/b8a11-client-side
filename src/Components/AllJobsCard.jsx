@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const AllJobsCard = ({ category }) => {
 
     const [allJobs, setAllJobs] = useState([]);
+    const [todayDate, setTodayDate] = useState(null);
+    // const [jobLastDate, setJobLastDate] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:5000/allAddedJobs/${category.category}`)
@@ -12,7 +14,10 @@ const AllJobsCard = ({ category }) => {
             .then(data => {
                 setAllJobs(data)
             })
+        const today = new Date();
+        setTodayDate(today);
     }, [category.category])
+
 
     return (
         <div>
@@ -31,7 +36,9 @@ const AllJobsCard = ({ category }) => {
                                                 }
                                             </p>
                                             <h5 className="font-bold mt-4">Last Date: {job.date}</h5>
-                                            <Link to={`/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link>
+                                            {
+                                                todayDate <= new Date(job.date) ? <Link to={`/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
+                                            }
                                         </div>
                                         <div className="ps-0 lg:ps-16">
                                             <h2 className="font-bold text-lg text-black mb-4 text-center lg:text-left">${job.minprice}-${job.maxprice}</h2>
@@ -51,5 +58,5 @@ const AllJobsCard = ({ category }) => {
 export default AllJobsCard;
 
 AllJobsCard.propTypes = {
-    category : PropTypes.object
+    category: PropTypes.object
 }

@@ -11,11 +11,14 @@ import Home from "../Pages/Home/Home";
 import PostAJob from "../Pages/PostAJob/PostAJob";
 import UpdateMyAddedJob from "../Pages/UpdateMyAddedJob/UpdateMyAddedJob";
 import JobBidPage from "../Pages/JobBidPage/JobBidPage";
+import PrivateRoute from "../Private/PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -32,30 +35,30 @@ const router = createBrowserRouter([
             },
             {
                 path: "/added_jobs",
-                element: <AddedJobs></AddedJobs>,
+                element: <PrivateRoute><AddedJobs></AddedJobs></PrivateRoute>,
             },
             {
                 path: "/my_bids",
-                element: <MyBids></MyBids>
+                element: <PrivateRoute><MyBids></MyBids></PrivateRoute>
             },
             {
                 path: "/bid_requests",
-                element: <BidRequests></BidRequests>
+                element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>
             },
             {
                 path: "/post_job",
-                element: <PostAJob></PostAJob>,
+                element: <PrivateRoute><PostAJob></PostAJob></PrivateRoute>,
                 loader: () => fetch("http://localhost:5000/categories")
             },
             {
                 path: "/updatemyaddedjobs/:id",
-                element: <UpdateMyAddedJob></UpdateMyAddedJob>,
-                loader: ({params}) => fetch(`http://localhost:5000/updateaddedjob/${params.id}`)
+                element: <PrivateRoute><UpdateMyAddedJob></UpdateMyAddedJob></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/updateaddedjob/${params.id}`)
             },
             {
                 path: "/job/:id",
-                element: <JobBidPage></JobBidPage>,
-                loader: ({params}) => fetch(`http://localhost:5000/jobdetails/${params.id}`)
+                element: <PrivateRoute><JobBidPage></JobBidPage></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/jobdetails/${params.id}`)
             }
         ]
     },

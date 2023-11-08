@@ -3,15 +3,17 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import Swal from 'sweetalert2';
+import app from "../../Firebase/Firebase.config";
 
 const Login = () => {
 
-    const { signIn, auth } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
     const location = useLocation();
     console.log(location);
     const navigate = useNavigate();
+    const auth = getAuth(app);
 
     const provider = new GoogleAuthProvider();
 
@@ -37,8 +39,7 @@ const Login = () => {
 
     const googleSignIn = () => {
         signInWithPopup(auth, provider)
-            .then((result) => {
-                console.log(result.user);
+            .then(() => {
                 navigate(location?.state ? location.state : "/")
             })
             .catch(error => {
