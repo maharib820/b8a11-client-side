@@ -58,11 +58,11 @@ const PostAJob = () => {
     }
 
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-full lg:w-2/3 mx-auto px-5 lg:px-0">
             <form onSubmit={handleAddJobForm}>
                 <h2 className="text-3xl font-bold mt-10 mb-6 text-center">POST JOB</h2>
                 {/* row1 */}
-                <div className="flex gap-5">
+                <div className="flex flex-col lg:flex-row gap-5">
                     <div className="form-control flex-1">
                         <label className="label">
                             <span className="label-text font-bold">Email Address</span>
@@ -78,7 +78,7 @@ const PostAJob = () => {
                 </div>
 
                 {/* row2 */}
-                <div className="flex gap-5 mt-4">
+                <div className="flex flex-col lg:flex-row gap-5 mt-4">
                     <div className="form-control flex-1">
                         <label className="label">
                             <span className="label-text font-bold">Category</span>
@@ -98,7 +98,7 @@ const PostAJob = () => {
                 </div>
 
                 {/* row3 */}
-                <div className="flex gap-5 mt-4">
+                <div className="flex flex-col lg:flex-row gap-5 mt-4">
                     <div className="form-control flex-1">
                         <label className="label">
                             <span className="label-text font-bold">Min Price</span>

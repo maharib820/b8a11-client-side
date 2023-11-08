@@ -15,10 +15,10 @@ const Home = () => {
             <div className='border-b-2'>
                 <Banner></Banner>
             </div>
-            <div className="flex justify-center rounded-none mt-8">
+            <div className="flex justify-center rounded-none mt-8 w-full px-2 lg:px-0">
                 <Tabs defaultFocus={true} defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className="w-full">
-                    <div className="max-w-7xl mx-auto bg-white border drop-shadow">
-                        <TabList className="flex gap-8 mx-auto text-slate-500 font-bold">
+                    <div className="w-full px-2 lg:px-0 lg:max-w-7xl mx-auto bg-white border drop-shadow">
+                        <TabList className="flex lg:gap-8 mx-auto text-slate-500 font-bold">
                             {
                                 categories?.map(category => {
                                     return <Tab
@@ -31,7 +31,7 @@ const Home = () => {
                         </TabList>
                     </div>
 
-                    <div className="max-w-7xl mx-auto bg-white border drop-shadow p-10 mt-5">
+                    <div className="max-w-7xl mx-auto bg-white border drop-shadow p-2 lg:p-10 mt-5">
                         {
                             categories?.map(category => {
                                 return <TabPanel key={category.id}>
