@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const UpdateMyAddedJob = () => {
 
@@ -41,13 +42,22 @@ const UpdateMyAddedJob = () => {
         fetch(`http://localhost:5000/updateaddedjob/${datas?._id}`, {
             method: "PUT",
             headers: {
-                "content-type":"application/json"
+                "content-type": "application/json"
             },
             body: JSON.stringify(updatedJob)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Job updated successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             })
     }
 
