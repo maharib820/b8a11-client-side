@@ -34,7 +34,8 @@ const JobBidPage = () => {
         const deadline = form.deadline.value;
         const bidby = form.bidby.value;
         const postedby = form.postedby.value;
-        const newAddedBids = { bidamount, deadline, bidby, postedby };
+        const title = data.title;
+        const newAddedBids = { bidamount, deadline, bidby, postedby, status: 'pending', title };
         fetch("http://localhost:5000/newAddedBids", {
             method: "POST",
             headers: {
