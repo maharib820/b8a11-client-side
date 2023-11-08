@@ -9,7 +9,7 @@ const AllJobsCard = ({ category }) => {
     // const [jobLastDate, setJobLastDate] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allAddedJobs/${category.category}`)
+        fetch(`https://server-hire-wave.vercel.app/allAddedJobs/${category.category}`)
             .then(res => res.json())
             .then(data => {
                 setAllJobs(data)
@@ -37,7 +37,7 @@ const AllJobsCard = ({ category }) => {
                                             </p>
                                             <h5 className="font-bold mt-4">Last Date: {job.date}</h5>
                                             {
-                                                todayDate <= new Date(job.date) ? <Link to={`/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
+                                                todayDate <= new Date(job.date) ? <Link to={`/wavehire/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
                                             }
                                         </div>
                                         <div className="ps-0 lg:ps-16">

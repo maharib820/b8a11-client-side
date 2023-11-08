@@ -33,7 +33,7 @@ const PostAJob = () => {
         const description = form.description.value;
         const newJob = { email, title, category, date, minprice, maxprice, description };
         // console.log(newJob);
-        fetch("http://localhost:5000/newAddedJobs", {
+        fetch("https://server-hire-wave.vercel.app/newAddedJobs", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -52,7 +52,7 @@ const PostAJob = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate("/added_jobs")
+                    navigate("/wavehire/added_jobs")
                 }
             })
     }

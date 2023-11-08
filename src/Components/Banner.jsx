@@ -13,9 +13,9 @@ const Banner = () => {
                             <TypeAnimation
                                 sequence={[
                                     'Hire skilled worker',
-                                    500,
-                                    'Or find work on skill',
-                                    500
+                                    800,
+                                    'Or earn money',
+                                    800
                                 ]}
                                 wrapper="span"
                                 speed={50}

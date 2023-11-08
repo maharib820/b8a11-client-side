@@ -42,6 +42,32 @@ const Home = () => {
                     </div>
                 </Tabs>
             </div>
+            <div>
+                <div className="bg-gray-100 py-8">
+                    <div className="container mx-auto">
+                        <h2 className="text-2xl font-semibold mb-4 text-center">Our Technology Partners</h2>
+                        <div className="flex justify-center items-center space-x-4 gap-5 lg:gap-28 mt-8">
+                            <div className="w-32">
+                                <img src="https://i.ibb.co/q05H7WM/1.jpg" alt="Brand 1" />
+                            </div>
+                            <div className="w-32">
+                                <img src="https://i.ibb.co/1zwYywz/2.png" alt="Brand 2" />
+                            </div>
+                            <div className="w-32">
+                                <img src="https://i.ibb.co/RHgp51R/ezgif-com-webp-to-jpg.jpg" alt="Brand 3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div className='w-full bg-slate-500 h-[300px] my-20'>
+                    <div className='flex justify-center items-center w-full h-full'>
+                        <input className='w-1/2 h-12 rounded-l-full pl-5' placeholder='subscribe to get regular update' type="text" />
+                        <button className='btn rounded-l-none rounded-r-full bg-[#e50010] text-white'>Subscribe</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

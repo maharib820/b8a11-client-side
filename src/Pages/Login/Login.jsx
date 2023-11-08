@@ -73,7 +73,7 @@ const Login = () => {
                     <button onClick={googleSignIn} className="w-full lg:w-10/12 btn border-2 border-[#29b2fe] rounded-none"><FcGoogle className="text-3xl"></FcGoogle>Continue with Google</button>
                 </div>
                 <hr className="h-2 w-10/12 mx-auto mt-20" />
-                <div className="mt-4"><h3 className="text-center font-bold">Do not have an account? <Link to={"/register"}><span className="text-[#29b2fe]">Register</span></Link></h3></div>
+                <div className="mt-4"><h3 className="text-center font-bold">Do not have an account? <Link to={"/wavehire/register"}><span className="text-[#29b2fe]">Register</span></Link></h3></div>
             </div>
         </div>
     );

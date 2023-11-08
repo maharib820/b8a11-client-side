@@ -36,7 +36,7 @@ const JobBidPage = () => {
         const postedby = form.postedby.value;
         const title = data.title;
         const newAddedBids = { bidamount, deadline, bidby, postedby, status: 'pending', title };
-        fetch("http://localhost:5000/newAddedBids", {
+        fetch("https://server-hire-wave.vercel.app/newAddedBids", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -54,7 +54,7 @@ const JobBidPage = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate("/my_bids")
+                    navigate("/wavehire/my_bids")
                 }
             })
     }
