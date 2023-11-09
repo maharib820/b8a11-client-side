@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import Swal from 'sweetalert2';
 import app from "../../Firebase/Firebase.config";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
@@ -55,6 +56,9 @@ const Login = () => {
 
     return (
         <div className="flex justify-center">
+            <Helmet>
+                <title>WaveHire | Login</title>
+            </Helmet>
             <div className="w-full lg:w-3/5 xl:w-1/3 border rounded-2xl mt-14 p-5 lg:p-10">
                 <div className="flex justify-center items-center gap-1">
                     <PiWavesBold className="text-[#29b2fe] text-2xl lg:text-4xl"></PiWavesBold>

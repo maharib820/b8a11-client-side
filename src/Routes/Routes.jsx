@@ -23,7 +23,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch("https://server-hire-wave.vercel.app/categories")
+                loader: () => fetch("https://server-hire-wave.vercel.app/categories",)
             },
             {
                 path: "/wavehire/login",

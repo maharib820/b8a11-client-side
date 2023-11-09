@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet-async";
 
 const PostAJob = () => {
 
@@ -39,7 +40,7 @@ const PostAJob = () => {
                 "content-type": "application/json"
             },
             body: JSON.stringify(newJob)
-        })
+        },)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -59,6 +60,9 @@ const PostAJob = () => {
 
     return (
         <div className="w-full lg:w-2/3 mx-auto px-5 lg:px-0">
+            <Helmet>
+                <title>WaveHire | Post a Job</title>
+            </Helmet>
             <form onSubmit={handleAddJobForm}>
                 <h2 className="text-3xl font-bold mt-10 mb-6 text-center">POST JOB</h2>
                 {/* row1 */}

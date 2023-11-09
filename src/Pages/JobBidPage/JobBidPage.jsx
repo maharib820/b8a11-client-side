@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet-async";
 
 const JobBidPage = () => {
 
@@ -61,6 +62,9 @@ const JobBidPage = () => {
 
     return (
         <div className="max-w-full xl:max-w-7xl mx-auto flex flex-col lg:flex-row gap-5 mt-10 px-4 xl:px-0">
+            <Helmet>
+                <title>WaveHire | Bid Job</title>
+            </Helmet>
             <div className="w-full lg:w-2/4 space-y-6">
                 <h2 className="text-2xl font-bold text-center xl:text-left">{data.title}</h2>
                 <h5 className="font-bold text-center xl:text-left">Last date {data.date}</h5>

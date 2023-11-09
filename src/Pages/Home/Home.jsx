@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useLoaderData } from "react-router-dom";
 import AllJobsCard from "../../Components/AllJobsCard";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
 
@@ -12,6 +13,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>WaveHire | Home | Freelancer Marketplace</title>
+            </Helmet>
             <div className='border-b-2'>
                 <Banner></Banner>
             </div>

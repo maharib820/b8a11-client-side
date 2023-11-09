@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { TbBounceRightFilled } from 'react-icons/tb';
-import { RxCross2 } from 'react-icons/rx';
+import { Helmet } from "react-helmet-async";
 
 const BidRequests = () => {
 
@@ -41,6 +40,9 @@ const BidRequests = () => {
 
     return (
         <div className="max-w-7xl mx-auto">
+            <Helmet>
+                <title>WaveHire | Bid Request</title>
+            </Helmet>
             <div className="overflow-x-auto font-bold mt-10">
                 <table className="table table-pin-rows table-pin-cols">
                     <thead>
@@ -67,14 +69,14 @@ const BidRequests = () => {
                                         <td>
                                             {
                                                 myAddedBid.status === "pending" ? 
-                                                <button onClick={() => handleRA(myAddedBid?._id, true)} className="btn bg-green-500"><TbBounceRightFilled className="text-white text-2xl"></TbBounceRightFilled></button> :
+                                                <button onClick={() => handleRA(myAddedBid?._id, true)} className="bg-green-500 px-4 text-white rounded-xl">Accept</button> :
                                                 ""
                                             }
                                         </td>
                                         <td>
                                             {
                                                 myAddedBid.status === "pending" ? 
-                                                <button onClick={() => handleRA(myAddedBid?._id, false)} className="btn bg-red-500"><RxCross2 className="text-white text-2xl"></RxCross2></button> :
+                                                <button onClick={() => handleRA(myAddedBid?._id, false)} className="bg-red-500 px-4 text-white rounded-xl">Reject</button> :
                                                 ""
                                             }
                                         </td>

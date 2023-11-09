@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const MyBids = () => {
 
@@ -41,12 +42,26 @@ const MyBids = () => {
     }
 
     const handleSelect = (e) => {
-        console.log(e.target.value);
-        setSelected(e.target.value)
+        fetch(`https://server-hire-wave.vercel.app/allBidss/${e.target.value}?email=${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setMyAddedBids(data)
+            })
     }
+
+    // const handleShowAll = (email) => {
+    //     fetch(`https://server-hire-wave.vercel.app/allBidss/${email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setMyAddedBids(data)
+    //         })
+    // }
 
     return (
         <div className="max-w-7xl mx-auto">
+            <Helmet>
+                <title>WaveHire | MyBids</title>
+            </Helmet>
             <div className="mt-8 ml-4">
                 <h2 className="font-bold mb-3">Sort by status</h2>
                 <div className="flex items-center">
@@ -79,12 +94,12 @@ const MyBids = () => {
                                 <tbody key={index}>
                                     <tr>
                                         <td>{myAddedBid.title}</td>
-                                        <td>{myAddedBid.bidby}</td>
+                                        <td>{myAddedBid.postedby}</td>
                                         <td>{myAddedBid.deadline}</td>
                                         <td>{myAddedBid.status}</td>
                                         {
                                             myAddedBid.status === "in progress" ?
-                                                <td><button onClick={() => handleComplete(myAddedBid?._id)} className="btn bg-green-600 text-white">Complete</button></td> : ""
+                                                <td><button onClick={() => handleComplete(myAddedBid?._id)} className="bg-green-600 text-white px-2 rounded-xl">Complete</button></td> : ""
                                         }
                                     </tr>
                                 </tbody>

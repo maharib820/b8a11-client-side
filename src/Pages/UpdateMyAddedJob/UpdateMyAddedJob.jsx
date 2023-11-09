@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import Swal from 'sweetalert2';
 
@@ -63,6 +64,9 @@ const UpdateMyAddedJob = () => {
 
     return (
         <div className="w-full lg:w-2/3 mx-auto px-5 lg:px-0">
+            <Helmet>
+                <title>WaveHire | Update My Added Job</title>
+            </Helmet>
             <form onSubmit={handleUpdateJobForm}>
                 <h2 className="text-3xl font-bold mt-10 mb-6 text-center">Update JOB</h2>
                 {/* row1 */}
