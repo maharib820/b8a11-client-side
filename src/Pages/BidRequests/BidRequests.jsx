@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
 
 const BidRequests = () => {
 
@@ -28,7 +29,13 @@ const BidRequests = () => {
             .then(data => {
                 console.log(data);
                 if (data.modifiedCount > 0) {
-                    alert("Data updated")
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Done",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     const remaining = myAddedBids.filter(bid => bid._id !== id);
                     const updated = myAddedBids.find(bid => bid._id === id);
                     bool ? updated.status = 'in progress' : updated.status = 'canceled';
@@ -68,16 +75,16 @@ const BidRequests = () => {
                                         <td>{myAddedBid.status}</td>
                                         <td>
                                             {
-                                                myAddedBid.status === "pending" ? 
-                                                <button onClick={() => handleRA(myAddedBid?._id, true)} className="bg-green-500 px-4 text-white rounded-xl">Accept</button> :
-                                                ""
+                                                myAddedBid.status === "pending" ?
+                                                    <button onClick={() => handleRA(myAddedBid?._id, true)} className="bg-green-500 px-4 text-white rounded-xl">Accept</button> :
+                                                    ""
                                             }
                                         </td>
                                         <td>
                                             {
-                                                myAddedBid.status === "pending" ? 
-                                                <button onClick={() => handleRA(myAddedBid?._id, false)} className="bg-red-500 px-4 text-white rounded-xl">Reject</button> :
-                                                ""
+                                                myAddedBid.status === "pending" ?
+                                                    <button onClick={() => handleRA(myAddedBid?._id, false)} className="bg-red-500 px-4 text-white rounded-xl">Reject</button> :
+                                                    ""
                                             }
                                         </td>
                                     </tr>

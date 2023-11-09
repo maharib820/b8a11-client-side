@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
 
 const MyBids = () => {
 
@@ -31,7 +32,13 @@ const MyBids = () => {
             .then(data => {
                 // console.log(data);
                 if (data.modifiedCount > 0) {
-                    alert("Data updated")
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Done",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     const remaining = myAddedBids.filter(bid => bid._id !== id);
                     const updated = myAddedBids.find(booking => booking._id === id);
                     updated.status = 'complete';
