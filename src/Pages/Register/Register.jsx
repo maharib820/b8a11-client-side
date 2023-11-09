@@ -56,7 +56,7 @@ const Register = () => {
                     })
                     .catch()
                 logOut();
-                navigate("/login");
+                navigate("/wavehire/login");
             })
             .catch(error => {
                 Swal.fire({
