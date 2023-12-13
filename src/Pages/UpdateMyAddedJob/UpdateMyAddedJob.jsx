@@ -12,7 +12,7 @@ const UpdateMyAddedJob = () => {
     const [selectedOption, setSelectedOption] = useState(datas?.category);
 
     useEffect(() => {
-        fetch("https://server-hire-wave.vercel.app/categories")
+        fetch("https://my-wavehire-server.vercel.app/categories")
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -40,7 +40,7 @@ const UpdateMyAddedJob = () => {
         const description = form.description.value;
         const updatedJob = { email, title, category, date, minprice, maxprice, description };
         // console.log(updatedJob);
-        fetch(`https://server-hire-wave.vercel.app/updateaddedjob/${datas?._id}`, {
+        fetch(`https://my-wavehire-server.vercel.app/updateaddedjob/${datas?._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

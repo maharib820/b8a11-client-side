@@ -9,7 +9,7 @@ const BidRequests = () => {
     const [myAddedBids, setMyAddedBids] = useState(null);
 
     useEffect(() => {
-        fetch(`https://server-hire-wave.vercel.app/allRequestedBids?email=${user?.email}`)
+        fetch(`https://my-wavehire-server.vercel.app/allRequestedBids?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyAddedBids(data)
@@ -18,7 +18,7 @@ const BidRequests = () => {
 
     // ...................................................................................................
     const handleRA = (id, bool) => {
-        fetch(`https://server-hire-wave.vercel.app/confirm/${id}`, {
+        fetch(`https://my-wavehire-server.vercel.app/confirm/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"

@@ -11,7 +11,7 @@ const MyBids = () => {
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
-        fetch(`https://server-hire-wave.vercel.app/allBids?email=${user?.email}`)
+        fetch(`https://my-wavehire-server.vercel.app/allBids?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyAddedBids(data)
@@ -21,7 +21,7 @@ const MyBids = () => {
     // console.log(myAddedBids);
 
     const handleComplete = (id) => {
-        fetch(`https://server-hire-wave.vercel.app/confirm/${id}`, {
+        fetch(`https://my-wavehire-server.vercel.app/confirm/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -49,7 +49,7 @@ const MyBids = () => {
     }
 
     const handleSelect = (e) => {
-        fetch(`https://server-hire-wave.vercel.app/allBidss/${e.target.value}?email=${user.email}`)
+        fetch(`https://my-wavehire-server.vercel.app/allBidss/${e.target.value}?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyAddedBids(data)
@@ -57,7 +57,7 @@ const MyBids = () => {
     }
 
     // const handleShowAll = (email) => {
-    //     fetch(`https://server-hire-wave.vercel.app/allBidss/${email}`)
+    //     fetch(`https://my-wavehire-server.vercel.app/allBidss/${email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setMyAddedBids(data)

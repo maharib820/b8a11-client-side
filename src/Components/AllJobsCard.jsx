@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import Countdown from 'react-countdown';
 
 const AllJobsCard = ({ category }) => {
 
@@ -9,7 +10,7 @@ const AllJobsCard = ({ category }) => {
     // const [jobLastDate, setJobLastDate] = useState(null);
 
     useEffect(() => {
-        fetch(`https://server-hire-wave.vercel.app/allAddedJobs/${category.category}`)
+        fetch(`https://my-wavehire-server.vercel.app/allAddedJobs/${category.category}`)
             .then(res => res.json())
             .then(data => {
                 setAllJobs(data)
@@ -36,6 +37,29 @@ const AllJobsCard = ({ category }) => {
                                                 }
                                             </p>
                                             <h5 className="font-bold mt-4">Last Date: {job.date}</h5>
+                                            {
+                                                <Countdown
+                                                    date={new Date(job?.date)}
+                                                    intervalDelay={0}
+                                                    precision={3}
+                                                    renderer={(props) => {
+                                                        const { days, hours, minutes, seconds, completed } = props;
+
+                                                        if (completed) {
+                                                            return ""
+                                                        } else {
+                                                            return (
+                                                                <div className="flex gap-4 mt-4">
+                                                                    <div>{days} days</div>
+                                                                    <div>{hours} hours</div>
+                                                                    <div>{minutes} minutes</div>
+                                                                    <div>{seconds} seconds</div>
+                                                                </div>
+                                                            );
+                                                        }
+                                                    }}
+                                                />
+                                            }
                                             {
                                                 todayDate <= new Date(job.date) ? <Link to={`/wavehire/job/${job._id}`}><button className="btn bg-green-500 text-white mt-6 px-10">Bid Now</button></Link> : <p className="text-red-600 font-bold mt-6">Deadline passed</p>
                                             }

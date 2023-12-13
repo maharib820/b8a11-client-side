@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../../Components/Banner";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useLoaderData } from "react-router-dom";
@@ -6,6 +6,16 @@ import AllJobsCard from "../../Components/AllJobsCard";
 import { Helmet } from "react-helmet-async";
 
 const Home = () => {
+
+    const [expJob, setExpJob] = useState(null);
+
+    useEffect(() => {
+        fetch("https://my-wavehire-server.vercel.app/sortedjob")
+            .then(res => res.json())
+            .then(data => {
+                setExpJob(data)
+            })
+    }, [])
 
     const categories = useLoaderData();
 
@@ -45,6 +55,36 @@ const Home = () => {
                         }
                     </div>
                 </Tabs>
+            </div>
+            <div className="max-w-7xl mx-auto shadow-xl mt-10 px-10">
+                <h2 className="text-center text-2xl font-bold my-10">Will Expire Soon</h2>
+                {
+                    expJob ?
+                        <div>
+                            {
+                                expJob?.map((job, index) => {
+                                    return (
+                                        <div key={index} className="border-b-2 pb-8 mb-8 flex flex-col gap-8 lg:flex-row lg:gap-0">
+                                            <div className="w-4/5 text-center mx-auto lg:text-left lg:mx-0">
+                                                <h2 className="font-bold text-lg text-black mb-4 text-center lg:text-left">{job.title}</h2>
+                                                <p className="max-w-full">
+                                                    {
+                                                        job.description.length > 1000 ? job.description.slice(0, 700) + '.....' : job.description
+                                                    }
+                                                </p>
+                                                <h5 className="font-bold mt-4">Last Date: {job.date}</h5>
+                                            </div>
+                                            <div className="ps-0 lg:ps-16">
+                                                <h2 className="font-bold text-lg text-black mb-4 text-center lg:text-left">${job.minprice}-${job.maxprice}</h2>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        :
+                        ""
+                }
             </div>
             <div>
                 <div className="bg-gray-100 py-8">

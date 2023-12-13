@@ -10,7 +10,7 @@ const AddedJobs = () => {
     const [myAddedJobs, setMyAddedJobs] = useState(null);
 
     useEffect(() => {
-        fetch(`https://server-hire-wave.vercel.app/allAddedJobs?email=${user?.email}`)
+        fetch(`https://my-wavehire-server.vercel.app/allAddedJobs?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyAddedJobs(data)
@@ -28,7 +28,7 @@ const AddedJobs = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://server-hire-wave.vercel.app/deletejob/${e}`, {
+                fetch(`https://my-wavehire-server.vercel.app/deletejob/${e}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

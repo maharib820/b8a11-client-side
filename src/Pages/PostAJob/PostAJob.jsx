@@ -34,7 +34,7 @@ const PostAJob = () => {
         const description = form.description.value;
         const newJob = { email, title, category, date, minprice, maxprice, description };
         // console.log(newJob);
-        fetch("https://server-hire-wave.vercel.app/newAddedJobs", {
+        fetch("https://my-wavehire-server.vercel.app/newAddedJobs", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
         //     if (currentUser) {
-        //         axios.post('https://server-hire-wave.vercel.app/jwt', loggedUser, {
+        //         axios.post('https://my-wavehire-server.vercel.app/jwt', loggedUser, {
         //             withCredentials: true
         //         })
         //             .then(res => {
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         //             })
         //     }
         //     else {
-        //         axios.post("https://server-hire-wave.vercel.app/logout", loggedUser, {
+        //         axios.post("https://my-wavehire-server.vercel.app/logout", loggedUser, {
         //             withCredentials: true
         //         })
         //             .then(res => console.log(res.data))

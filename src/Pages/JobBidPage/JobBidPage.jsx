@@ -37,7 +37,7 @@ const JobBidPage = () => {
         const postedby = form.postedby.value;
         const title = data.title;
         const newAddedBids = { bidamount, deadline, bidby, postedby, status: 'pending', title };
-        fetch("https://server-hire-wave.vercel.app/newAddedBids", {
+        fetch("https://my-wavehire-server.vercel.app/newAddedBids", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch("https://server-hire-wave.vercel.app/categories",)
+                loader: () => fetch("https://my-wavehire-server.vercel.app/categories",)
             },
             {
                 path: "/wavehire/login",
@@ -48,17 +48,17 @@ const router = createBrowserRouter([
             {
                 path: "/wavehire/post_job",
                 element: <PrivateRoute><PostAJob></PostAJob></PrivateRoute>,
-                loader: () => fetch("https://server-hire-wave.vercel.app/categories")
+                loader: () => fetch("https://my-wavehire-server.vercel.app/categories")
             },
             {
                 path: "/wavehire/updatemyaddedjobs/:id",
                 element: <PrivateRoute><UpdateMyAddedJob></UpdateMyAddedJob></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://server-hire-wave.vercel.app/updateaddedjob/${params.id}`)
+                loader: ({ params }) => fetch(`https://my-wavehire-server.vercel.app/updateaddedjob/${params.id}`)
             },
             {
                 path: "/wavehire/job/:id",
                 element: <PrivateRoute><JobBidPage></JobBidPage></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://server-hire-wave.vercel.app/jobdetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://my-wavehire-server.vercel.app/jobdetails/${params.id}`)
             }
         ]
     },
